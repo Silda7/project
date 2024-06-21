@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Ferme-Mart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="{{ url_for('static', filename='logoo.png') }}" rel="icon" type="image/x-icon" />
+    <link
+        href="https://fonts.googleapis.com/css?family=Gloria Hallelujah:300,300i,400,400i,600,600i,700,700i|Sedan SC:300,300i,400,400i,600,600i,700,700i|Zeyada:300,300i,400,400i,600,600i,700,700i|Bungee Spice:300,300i,400,400i,600,600i,700,700i|Merriweather:300,300i,400,400i,500,500i,600,600i,700,700i|Roboto Condensed:300,300i,400,400i,600,600i,700,700i|Josefin Sans:300,300i,400,400i,500,500i,600,600i,700,700i|Anton:300,300i,400,400i,500,500i,600,600i,700,700i|Playwrite NZ:300,300i,400,400i,500,500i,600,600i,700,700i|Holtwood One SC:300,300i,400,400i,500,500i,600,600i,700,700i|Vast Shadow:300,300i,400,400i,500,500i,600,600i,700,700i|Slabo 13px:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+    <style>
+        .navbar-brand {
+            font-family: "Bungee Spice", sans-serif;
+            font-size: 25px;
+        }
+
+        .footer {
+            background-color: rgb(45, 83, 4);
+            color: white;
+            font-family: "Merriweather", serif;
+            padding: 20px 0;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .nav-item .nav-link {
+            font-family: "Bungee Spice", sans-serif;
+        }
+
+        .navbar {
+            background-color: rgb(255, 255, 255) !important;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info div {
+            margin: 10px 0;
+        }
+
+        .contact-info img {
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .navbar-toggler {
+            border: 2px solid rgb(255, 255, 255);
+            background-color: rgba(45, 83, 4, 0.397);
+        }
+
+        .navbar-toggler-icon {
+            background-image: none;
+            position: relative;
+            width: 24px;
+            height: 24px;
+        }
+
+        .navbar-toggler-icon::before,
+        .navbar-toggler-icon::after,
+        .navbar-toggler-icon div {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+        }
+
+        .navbar-toggler-icon::before {
+            top: 6px;
+        }
+
+        .navbar-toggler-icon::after {
+            bottom: 6px;
+        }
+
+        .navbar-toggler-icon div {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+
+        body {
+            background-image: url("../static/back4.jpg");
+            display: block;
+            background-size: cover;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: repeat-y;
+            background-attachment: fixed;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-top: 120px;
+        }
+
+        .figure-img {
+            border: 2px solid #007bff;
+            padding: 5px;
+        }
+
+        .form-control {
+            border-radius: 20px;
+        }
+
+        .btn-info {
+            border-radius: 20px;
+        }
+
+        .btn-secondary,
+        .btn-close {
+            border-radius: 20px;
+        }
+
+        .text-center p {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .modal-content {
+            background-color: #f8f9fa;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            background-color: rgb(6, 90, 28);
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            color: #fff;
+            padding: 15px 20px;
+        }
+
+        .modal-title {
+            font-size: 30px;
+            font-weight: bold;
+            color: #ffffff;
+            font-family: "Holtwood One SC", serif;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .modal-body p {
+            text-align: justify;
+            font-family: "Slabo 13px", serif;
+        }
+
+        .modal-body h3 {
+            text-decoration: underline;
+            text-align: left;
+            margin-bottom: 20px;
+            font-family: "Vast Shadow", serif;
+        }
+
+        .modal-body h1 {
+            text-align: left;
+            font-style: italic;
+            font-family: "Playwrite NZ", cursive;
+        }
+
+        .modal-body img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .btn-primary {
+            background-color: rgb(253, 255, 254);
+            border-color: rgb(6, 90, 28);
+            color: black;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+            font-family: "Holtwood One SC", serif;
+        }
+
+        .btn-primary:hover {
+            background-color: black;
+            border-color: black;
+        }
+
+        .btn-close {
+            color: #fff;
+            font-size: 24px;
+        }
+
+        .modal-footer {
+            background-color: rgb(6, 90, 28);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            padding: 15px 20px;
+        }
+
+        .modal-footer .toko-name h5,
+        .modal-footer .toko-name h3 {
+            color: #fff;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .modal-footer .toko-name h3 {
+            font-family: "Zeyada", cursive;
+            font-size: 40px;
+        }
+
+        .custom-input {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            padding: 10px;
+            border: 2px solid #6A994E;
+            border-radius: 8px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .custom-input:focus {
+            border-color: #3A5A40;
+            box-shadow: 0 0 50px rgba(106, 153, 78, 0.5);
+            outline: none;
+        }
+
+        .custom-input::placeholder {
+            color: #888;
+            opacity: 1;
+            font-family: "Zeyada", cursive;
+            font-size: 25px;
+        }
+
+        .custom-input:hover {
+            border-color: #3A5A40;
+        }
+
+        .custom-input:active {
+            border-color: #3A5A40;
+            box-shadow: 0 0 30px rgba(106, 153, 78, 0.5);
+        }
+
+        .form-label {
+            font-family: "Vast Shadow", serif;
+            margin-right: 100%;
+        }
+
+        .form-control {
+            font-family: "Playwrite NZ", cursive;
+            font-size: 12px;
+        }
+
+        .small {
+            font-family: "Holtwood One SC", serif;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="../static/logoo.png" alt="" width="50" height="50" style="padding: 0;">
+                <a class="navbar-brand" href="#">La Ferme-Mart</a>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/produk">Product</a>
+                    </li>
+                    {% if is_user %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/order-history">Order History</a>
+                    </li>
+                    {% elif is_admin %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" data-bs-toggle="modal" data-bs-target="#detailAddModal">
+                            Add Product
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/seller-transaction">Transaction List</a>
+                    </li>
+                    {% endif %}
+                    {% if not logged_in %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/signup">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/signin" class="nav-link active">Login</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user"></i> Profile
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a href="/profile" class="dropdown-item" style="color:brown">
+                                    <svg xmlns="http://www.w3.org/2000/svg" style="color:brown" width="24" height="24"
+                                        fill="currentColor" class="bi bi-person-check" viewBox="0 0 16 16">
+                                        <path
+                                            d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
+                                        <path
+                                            d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z" />
+                                    </svg> My Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/logout" class="dropdown-item" style="color:brown">
+                                    <svg xmlns="http://www.w3.org/2000/svg" style="color:brown" width="24" height="24"
+                                        fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
+                                        <path fill-rule="evenodd"
+                                            d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                                    </svg> Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Add -->
+    <div class="modal fade" id="detailAddModal" tabindex="-1" aria-labelledby="detailAddModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailAddModalLabel">Tambah Produk</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/add" method="POST" enctype="multipart/form-data">
+                    <section class="modal-body">
+                        <!-- Product Name Field -->
+                        <div class="mb-3">
+                            <label for="productName" class="form-label text-start">Product Name</label>
+                            <input type="text" class="form-control" id="productName" name="nama_produk"
+                                placeholder="Enter product name" required>
+                        </div>
+
+                        <!-- Product Price Field -->
+                        <div class="mb-3">
+                            <label for="productPrice" class="form-label text-start">Product Price</label>
+                            <input type="number" class="form-control" id="productPrice" name="harga_produk"
+                                placeholder="Enter product price" required>
+                        </div>
+
+                        <!-- Product Description Field -->
+                        <div class="mb-3">
+                            <label for="productDescription" class="form-label text-start">Product Description</label>
+                            <textarea class="form-control" id="productDescription" name="deskripsi_produk"
+                                placeholder="Enter product description" required></textarea>
+                        </div>
+
+                        <!-- Product Photo Field -->
+                        <div class="mb-3">
+                            <label for="productPhoto" class="form-label text-start">Product Photo</label>
+                            <input type="file" class="form-control" id="productPhoto" name="foto_produk"
+                                accept="image/*" required>
+                        </div>
+                    </section>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Add Product</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="alert alert-light position-relative">
+            <!-- Close button -->
+            <button class="btn-close position-absolute top-0 end-0 m-3" aria-label="Close" onclick="goBack()"></button>
+
+            <div class="row justify-content-center">
+                <div class="col-6 d-flex justify-content-center align-items-center">
+                    <figure class="figure">
+                        <img src="/static/profile/{{ foto }}" class="figure-img img-fluid rounded-circle"
+                            alt="Profile Image" width="128" height="128">
+                    </figure>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <p class="small text-capitalize">{{ name }}</p>
+            </div>
+
+            <form method="post" action="{{ url_for('profile') }}" enctype="multipart/form-data">
+                <input type="hidden" name="user_id" value="{{ user_id }}">
+                <div class="form-group">
+                    <label class="form-label">Name</label>
+                    <input class="form-control text-capitalize" type="text" placeholder="e.g Alex Smith" name="name"
+                        value="{{ name }}" required>
+                </div>
+                <div class="form-group mt-4">
+                    <label class="form-label">Address</label>
+                    <input class="form-control  text-capitalize" type="text" placeholder="e.g Jl." name="address"
+                        value="{{ address }}" required>
+                </div>
+                <div class="form-group mt-4">
+                    <label class="form-label">Email</label>
+                    <input class="form-control" type="email" placeholder="e.g example@example.com" name="email"
+                        value="{{ email }}" required>
+                </div>
+                <div class="form-group mt-4">
+                    <label class="form-label">Profile Picture</label>
+                    <input class="form-control" type="file" name="profile_picture" accept="image/*">
+                </div>
+                <div class="form-group mt-4">
+                    <button class="btn btn-info btn-block" type="submit">Save Profile</button>
+                    <a href="{{ url_for('profile') }}" class="btn btn-secondary btn-block">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</body>
+
+</html>

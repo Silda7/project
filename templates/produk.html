@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Ferme-Mart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="{{ url_for('static', filename='logoo.png') }}" rel="icon" type="image/x-icon" />
+    <link
+        href="https://fonts.googleapis.com/css?family=Gloria Hallelujah:300,300i,400,400i,600,600i,700,700i|Sedan SC:300,300i,400,400i,600,600i,700,700i|Zeyada:300,300i,400,400i,600,600i,700,700i|Bungee Spice:300,300i,400,400i,600,600i,700,700i|Merriweather:300,300i,400,400i,500,500i,600,600i,700,700i|Roboto Condensed:300,300i,400,400i,600,600i,700,700i|Josefin Sans:300,300i,400,400i,500,500i,600,600i,700,700i|Anton:300,300i,400,400i,500,500i,600,600i,700,700i|Playwrite NZ:300,300i,400,400i,500,500i,600,600i,700,700i|Holtwood One SC:300,300i,400,400i,500,500i,600,600i,700,700i|Vast Shadow:300,300i,400,400i,500,500i,600,600i,700,700i|Slabo 13px:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+    <style>
+        .navbar-brand {
+            font-family: "Bungee Spice", sans-serif;
+            font-size: 30px;
+        }
+
+        .nav-item .nav-link {
+            font-family: "Bungee Spice", sans-serif;
+        }
+
+        body {
+            background-image: url("../static/back4.jpg");
+            display: block;
+            background-size: cover;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: repeat-y;
+            background-attachment: fixed;
+            margin: 0;
+        }
+
+        .navbar {
+            background-color: white;
+        }
+
+        a,
+        a:hover {
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .list-produk {
+            border: 1px solid rgb(0, 0, 0);
+            padding: 10px;
+            float: left;
+            width: 200px;
+            margin: 20px;
+            background-color: white;
+        }
+
+        .list-produk:hover {
+            transition-duration: 300ms;
+            box-shadow: 10px 10px 10px 10px rgb(0, 0, 0);
+        }
+
+        .list-produk img {
+            width: 100%;
+            height: 175px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .list-produk .tex1,
+        .list-produk .tex2 {
+            color: crimson;
+            margin-bottom: 5px;
+        }
+
+        .list-produk .tex1 {
+            font-size: 30px;
+            font-family: "Sedan SC", serif;
+        }
+
+        .list-produk .tex2 {
+            font-family: "Playwrite NZ", cursive;
+            font-size: 15px;
+        }
+
+        .tombol {
+            text-decoration: none;
+            border-radius: 7px;
+            padding: 7px;
+            display: block;
+            float: left;
+            width: 25%;
+            margin: 4px;
+            text-align: center;
+            color: white;
+            font-family: "Anton", sans-serif;
+        }
+
+        .tombol:hover {
+            background-color: rgb(16, 5, 50);
+            color: aliceblue;
+            transition-duration: 700ms;
+        }
+
+        .tombol-detail {
+            background-color: rgb(159, 2, 2);
+            margin-left: 40px;
+
+        }
+
+        .tombol-buy {
+            background-color: rgb(9, 86, 30);
+
+        }
+
+        .navbar-brand {
+            font-family: "Bungee Spice", sans-serif;
+            font-size: 25px;
+        }
+
+        .footer {
+            background-color: rgb(45, 83, 4);
+            color: white;
+            font-family: "Merriweather", serif;
+            padding: 20px 0;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .nav-item .nav-link {
+            font-family: "Bungee Spice", sans-serif;
+        }
+
+        .navbar {
+            background-color: rgb(255, 255, 255) !important;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info div {
+            margin: 10px 0;
+        }
+
+        .contact-info img {
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .navbar-toggler {
+            border: 2px solid rgb(255, 255, 255);
+            background-color: rgba(45, 83, 4, 0.397);
+        }
+
+        .navbar-toggler-icon {
+            background-image: none;
+            position: relative;
+            width: 24px;
+            height: 24px;
+        }
+
+        .navbar-toggler-icon::before,
+        .navbar-toggler-icon::after,
+        .navbar-toggler-icon div {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+        }
+
+        .navbar-toggler-icon::before {
+            top: 6px;
+        }
+
+        .navbar-toggler-icon::after {
+            bottom: 6px;
+        }
+
+        .navbar-toggler-icon div {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        @media (max-width: 1200px) {
+            .list-produk {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+        @media (max-width: 992px) {
+            .list-produk {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .list-produk {
+                width: 100%;
+                margin: 10px 0;
+            }
+            
+        }
+
+        @media (max-width: 576px) {
+            .list-produk {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+
+        .modal-content {
+            background-color: #f8f9fa;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            background-color: rgb(6, 90, 28);
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            color: #fff;
+            padding: 15px 20px;
+        }
+
+        .modal-title {
+            font-size: 30px;
+            font-weight: bold;
+            color: #ffffff;
+            font-family: "Holtwood One SC", serif;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .modal-body p {
+            text-align: justify;
+            font-family: "Slabo 13px", serif;
+        }
+
+        .modal-body h3 {
+            text-decoration: underline;
+            text-align: left;
+            margin-bottom: 20px;
+            font-family: "Vast Shadow", serif;
+        }
+
+        .modal-body h1 {
+            text-align: left;
+            font-style: italic;
+            font-family: "Playwrite NZ", cursive;
+        }
+
+        .modal-body img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .btn-primary {
+            background-color: rgb(253, 255, 254);
+            border-color: rgb(6, 90, 28);
+            color: black;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+            font-family: "Holtwood One SC", serif;
+        }
+
+        .btn-primary:hover {
+            background-color: black;
+            border-color: black;
+        }
+
+        .btn-secondary {
+            background-color: rgb(11, 113, 24);
+            border-color: rgb(0, 0, 0);
+            color: rgb(255, 255, 255);
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+            font-family: "Holtwood One SC", serif;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgb(255, 255, 255);
+            border-color: black;
+            color: red;
+        }
+
+        .btn-close {
+            color: #fff;
+            font-size: 24px;
+        }
+
+        .modal-footer {
+            background-color: rgb(6, 90, 28);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            padding: 15px 20px;
+        }
+
+        .modal-footer .toko-name h5,
+        .modal-footer .toko-name h3 {
+            color: #fff;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .modal-footer .toko-name h3 {
+            font-family: "Zeyada", cursive;
+            font-size: 40px;
+        }
+
+        .custom-input {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            padding: 10px;
+            border: 2px solid #6A994E;
+            border-radius: 8px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .custom-input:focus {
+            border-color: #3A5A40;
+            box-shadow: 0 0 50px rgba(106, 153, 78, 0.5);
+            outline: none;
+        }
+
+        .custom-input::placeholder {
+            color: #888;
+            opacity: 1;
+            font-family: "Zeyada", cursive;
+            font-size: 25px;
+        }
+
+        .custom-input:hover {
+            border-color: #3A5A40;
+        }
+
+        .custom-input:active {
+            border-color: #3A5A40;
+            box-shadow: 0 0 30px rgba(106, 153, 78, 0.5);
+        }
+
+        .form-label {
+            font-family: "Vast Shadow", serif;
+            margin-right: 100%;
+        }
+
+        .form-control {
+            font-family: "Playwrite NZ", cursive;
+            font-size: 12px;
+        }
+
+        .search-container {
+            width: 100%;
+            background: #fff;
+            height: 40px;
+            border-radius: 30px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: box-shadow 0.6s ease;
+            box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .3),
+                -4px -4px 6px 0 rgba(116, 125, 136, .2),
+                inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
+                inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+        }
+
+        .search-container:hover {
+            box-shadow: 6px 6px 8px 0 rgba(255, 255, 255, .3),
+                -6px -6px 8px 0 rgba(116, 125, 136, .2),
+                inset -6px -6px 8px 0 rgba(255, 255, 255, .2),
+                inset 6px 6px 8px 0 rgba(0, 0, 0, .2);
+            border-radius: 20px;
+        }
+
+        .search-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            width: 100%;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .search-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 10px;
+            border: none;
+            background: none;
+            padding: 0;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .search-btn:focus {
+            outline: none;
+        }
+
+        .search-btn .bi {
+            color: #5cbdbb;
+        }
+
+        .icon {
+            margin-right: 10px;
+            color: black;
+        }
+
+        .text {
+            color: black;
+            font-size: 14px;
+        }
+
+        .btn-custom {
+            height: 40px;
+            border-radius: 30px;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .3),
+                -4px -4px 6px 0 rgba(116, 125, 136, .2),
+                inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
+                inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+            transition: box-shadow 0.6s ease;
+            border: none;
+            background: none;
+            outline: none;
+        }
+
+        .btn-custom:hover {
+            box-shadow: 6px 6px 8px 0 rgba(255, 255, 255, .3),
+                -6px -6px 8px 0 rgba(116, 125, 136, .2),
+                inset -6px -6px 8px 0 rgba(255, 255, 255, .2),
+                inset 6px 6px 8px 0 rgba(0, 0, 0, .2);
+            border-radius: 20px;
+        }
+
+        .btn-custom:focus {
+            outline: none;
+        }
+
+        .btn-custom .bi {
+            color: #fff;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container .field {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-container .label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-container .control input,
+        .form-container .control textarea {
+            font-size: 1rem;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-container .control input:focus,
+        .form-container .control textarea:focus {
+            border-color: #3273dc;
+            background-color: #fff;
+        }
+
+        .form-container .control input[type="file"] {
+            padding: 0.5rem;
+            border: none;
+            background-color: #f9f9f9;
+        }
+
+        .form-container .control .button {
+            font-size: 1rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .form-container .control .button.is-primary {
+            background-color: #3273dc;
+            color: #fff;
+            border: none;
+        }
+
+        .form-container .control .button.is-primary:hover {
+            background-color: #2767cc;
+            transform: translateY(-2px);
+        }
+
+        .form-container .control .button.is-link {
+            background-color: #23d160;
+            color: #fff;
+            border: none;
+        }
+
+        .form-container .control .button.is-link:hover {
+            background-color: #20c25a;
+            transform: translateY(-2px);
+        }
+
+        .modal-card-foot {
+            justify-content: flex-end;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 20px;
+                margin: 20px;
+            }
+
+            .form-container .control .button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .modal-card-foot {
+                flex-direction: column;
+            }
+        }
+
+        .button {
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            vertical-align: middle;
+            cursor: pointer;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-transform: uppercase;
+        }
+
+        .button.is-danger {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .button.is-danger:hover {
+            background-color: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .button.is-danger:active {
+            background-color: #bd2130;
+            transform: translateY(0);
+        }
+
+        .button.is-link {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .button.is-link:hover {
+            background-color: #0069d9;
+            transform: translateY(-2px);
+        }
+
+        .button.is-link:active {
+            background-color: #0056b3;
+            transform: translateY(0);
+        }
+    </style>
+    <script>
+        function next() {
+            window.location.href = "/purchase";
+        }
+        function buy() {
+            window.location.href = "/purchase";
+        }
+
+        function logout() {
+            window.location.href = "/login";
+        }
+
+        function showDetailModal() {
+            $('#detailProductModal').modal('show');
+        }
+
+        function showInputModal() {
+            $('#detailInputModal').modal('show');
+        }
+        function showDeleteModal() {
+            $('#detailDeleteModal').modal('show');
+        }
+
+        function showAddModal() {
+            $('#detaiAddModal').modal('show');
+        }
+        function showEditModal() {
+            $('#detailEditModal').modal('show');
+        }
+        function searchProducts() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const products = document.querySelectorAll('.list-produk');
+
+            products.forEach((product) => {
+                const productName = product.querySelector('h4').textContent.toLowerCase();
+                if (productName.includes(searchInput)) {
+                    product.parentNode.style.display = 'block';
+                } else {
+                    product.parentNode.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="../static/logoo.png" alt="" width="50" height="50" style="padding: 0;">
+                <a class="navbar-brand" href="#">La Ferme-Mart</a>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/produk">Product</a>
+                    </li>
+                    {% if is_user %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/order-history">Order History</a>
+                    </li>
+                    {% elif is_admin %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" data-bs-toggle="modal" data-bs-target="#detailAddModal">
+                            Add Product
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/seller-transaction">Transaction List</a>
+                    </li>
+                    {% endif %}
+                    {% if not logged_in %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/signup">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/signin" class="nav-link active">Login</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user"></i> Profile
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a href="/profile" class="dropdown-item" style="color:brown">
+                                    <svg xmlns="http://www.w3.org/2000/svg" style="color:brown" width="24" height="24"
+                                        fill="currentColor" class="bi bi-person-check" viewBox="0 0 16 16">
+                                        <path
+                                            d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
+                                        <path
+                                            d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z" />
+                                    </svg> My Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/logout" class="dropdown-item" style="color:brown">
+                                    <svg xmlns="http://www.w3.org/2000/svg" style="color:brown" width="24" height="24"
+                                        fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
+                                        <path fill-rule="evenodd"
+                                            d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                                    </svg> Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="section" style="margin-top:100px">
+        <div class="container mt-3">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="input-group search-container">
+                    <input type="text" id="searchInput" name="search" placeholder="Search..."
+                        class="form-control search-input">
+                    <div class="input-group-append">
+                        <button onclick="searchProducts()" class="btn search-btn" type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                class="bi bi-search" viewBox="0 0 16 16">
+                                <path
+                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container text-center">
+            <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 mt-4">
+                {% for produk in produk_list %}
+                <div class="col">
+                    <div class="list-produk">
+                        <img class="product-image" src="/static/produk/{{ produk.foto_produk }}" alt="">
+                        <h4 class="tex1 text-capitalize">{{ produk.nama_produk }}</h4>
+                        <h5 class="tex2 mb-3">Rp. {{ produk.harga_produk }}/kg</h5>
+                        {% if is_user %}
+                        <a class="tombol tombol-detail" href="#" data-bs-toggle="modal"
+                            data-bs-target="#detailProductModal{{ produk._id }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"></path>
+                                <path
+                                    d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7">
+                                </path>
+                            </svg>
+                        </a>
+                        <!-- Detail Product Modal -->
+                        <div class="modal fade" id="detailProductModal{{ produk._id }}" tabindex="-1"
+                            aria-labelledby="detailProductModalLabel{{ produk._id }}" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="detailProductModalLabel{{ produk._id }}">Detail
+                                            Product</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <img src="/static/produk/{{ produk.foto_produk }}" class="img-fluid"
+                                                    alt="Product Image">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h3 class="text-uppercase">{{ produk.nama_produk }}</h3>
+                                                <p class="text-break text-capitalize">{{ produk.deskripsi_produk }}</p>
+                                                <br><br>
+                                                <h1>Rp. {{ produk.harga_produk }}/kg</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="toko-name me-auto">
+                                            <h5 class="text-break mb-0">Toko</h5>
+                                            <h3 class="text-break text-capitalize">{{ produk.store }}</h3>
+                                        </div>
+                                        {% if is_user %}
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#detailInputModal{{ produk._id }}">Buy</button>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a class="tombol tombol-buy" href="#" data-bs-toggle="modal"
+                            data-bs-target="#detailInputModal{{ produk._id }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-bag-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4z">
+                                </path>
+                            </svg>
+                        </a>
+
+                        <!-- Detail Input Nominal Modal -->
+                        <div class="modal fade" id="detailInputModal{{ produk._id }}" tabindex="-1"
+                            aria-labelledby="detailInputModalLabel{{ produk._id }}" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="detailInputModalLabel{{ produk._id }}">Buy Product
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <img src="/static/produk/{{ produk.foto_produk }}" class="img-fluid"
+                                                    alt="Product Image">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h3 class="text-uppercase">{{ produk.nama_produk }}</h3>
+                                                <p class="text-break text-capitalize">{{ produk.deskripsi_produk }}</p>
+                                                <br>
+                                                <h1>Rp. {{ produk.harga_produk }}/kg</h1><br><br>
+                                                <hr class="dropdown-divider">
+                                                <br><br>
+
+                                                <!-- Form input nominal -->
+                                                <form action="{{ url_for('purchase') }}" method="POST">
+                                                    <div class="mb-3">
+                                                        <label for="inputNominal{{ produk._id }}">
+                                                            <h5 style="color:black; font-weight:bold;"><i>Input Jumlah
+                                                                    Produk</i></h5>
+                                                        </label>
+                                                        <input type="number" class="form-control custom-input"
+                                                            name="quantity" id="inputNominal{{ produk._id }}"
+                                                            placeholder="Input in here...." min="1" max="100" required>
+                                                    </div>
+                                                    <input type="hidden" name="product_id" value="{{ produk._id }}">
+                                                    <button type="submit" name="action" value="buy"
+                                                        class="btn btn-primary">Buy</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="toko-name me-auto">
+                                            <h5 class="text-break mb-0">Toko</h5>
+                                            <h3 class="text-break text-capitalize">{{ produk.store }}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% elif is_admin %}
+                        <a class="tombol tombol-detail" href="#" style="margin-left:40px" data-bs-toggle="modal"
+                            data-bs-target="#detailEditModal{{ produk._id }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
+                                class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                <path
+                                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                <path fill-rule="evenodd"
+                                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                            </svg>
+                        </a>
+                        <!-- Edit -->
+                        <div class="modal fade" id="detailEditModal{{ produk._id }}" tabindex="-1"
+                            aria-labelledby="detailEditModalLabel{{ produk._id }}" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" style="color: White;"
+                                            id="detailEditModalLabel{{ produk._id }}">Edit Produk
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <form action="/edit" method="POST" enctype="multipart/form-data">
+                                        <section class="modal-card-body">
+                                            <input type="hidden" name="produk_id" value="{{ produk._id }}">
+                                            <div class="form-container">
+                                                <div class="mb-3">
+                                                    <label for="nama_produk" class="form-label text-start">Product
+                                                        Name</label>
+                                                    <input type="text" style="font-size:large"
+                                                        class="form-control text-capitalize" id="nama_produk"
+                                                        name="nama_produk" placeholder="Enter product name"
+                                                        value="{{ produk.nama_produk }}" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="harga_produk" class="form-label text-start">Product
+                                                        Price</label>
+                                                    <input type="text" style="font-size:large"
+                                                        class="form-control text-capitalize" id="harga_produk"
+                                                        name="harga_produk" placeholder="Enter product price"
+                                                        value="{{ produk.harga_produk }}" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="deskripsi_produk" class="form-label text-start">Product
+                                                        Description</label>
+                                                    <textarea style="font-size:14px"
+                                                        class="form-control text-capitalize" id="deskripsi_produk"
+                                                        name="deskripsi_produk" rows="3"
+                                                        placeholder="Enter product description"
+                                                        required>{{ produk.deskripsi_produk }}</textarea>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="foto_produk" class="form-label text-start">Product
+                                                        Photo</label>
+                                                    <input style="font-size:14px" type="file" class="form-control"
+                                                        id="foto_produk" name="foto_produk" accept="image/*">
+                                                </div>
+                                                <div class="d-flex justify-content-end">
+                                                    <button type="submit" class="btn btn-secondary me-2">Save
+                                                        Changes</button>
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cancel</button>
+                                                </div>
+                                            </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a class="tombol tombol-buy" href="#" data-bs-toggle="modal"
+                            data-bs-target="#detailDeleteModal{{ produk._id }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
+                                class="bi bi-trash" viewBox="0 0 16 16">
+                                <path
+                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                                <path
+                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                            </svg>
+                        </a>
+                        <!-- Delete -->
+                        <div class="modal fade" id="detailDeleteModal{{ produk._id }}" aria-hidden="true"
+                            aria-labelledby="detailDeleteModalLabel{{ produk._id }}" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <br>
+                                        <p class="text-center">Are you sure you want to delete "{{ produk.nama_produk
+                                            }}"?</p>
+                                    </div>
+                                    <form action="/delete" method="POST">
+                                        <input type="hidden" name="produk_id" value="{{ produk._id }}">
+                                        <button type="submit" class="button is-danger mb-4">Delete</button>
+                                        <button type="button" class="button is-link mb-4"
+                                            data-bs-dismiss="modal">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% endif %}
+                        {% if not logged_in %}
+                        <a class="tombol tombol-detail" href="#" style="margin-left:65px" data-bs-toggle="modal"
+                            data-bs-target="#detailProductModal{{ produk._id }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"></path>
+                                <path
+                                    d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7">
+                                </path>
+                            </svg>
+                        </a>
+                        <!-- Detail Product Modal -->
+                        <div class="modal fade" id="detailProductModal{{ produk._id }}" tabindex="-1"
+                            aria-labelledby="detailProductModalLabel{{ produk._id }}" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="detailProductModalLabel{{ produk._id }}">Detail
+                                            Product</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <img src="/static/produk/{{ produk.foto_produk }}" class="img-fluid"
+                                                    alt="Product Image">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h3 class="text-uppercase">{{ produk.nama_produk }}</h3>
+                                                <p class="text-break text-capitalize">{{ produk.deskripsi_produk }}</p>
+                                                <br><br>
+                                                <h1>Rp. {{ produk.harga_produk }}/kg</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="toko-name me-auto">
+                                            <h5 class="text-break mb-0">Toko</h5>
+                                            <h3 class="text-break text-capitalize">{{ produk.store }}</h3>
+                                        </div>
+                                        {% if logged_in %}
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#detailInputModal{{ produk._id }}">Buy</button>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Add -->
+        <div class="modal fade" id="detailAddModal" tabindex="-1" aria-labelledby="detailAddModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="detailAddModalLabel">Tambah Produk</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="/add" method="POST" enctype="multipart/form-data">
+                        <section class="modal-body">
+                            <!-- Product Name Field -->
+                            <div class="mb-3">
+                                <label for="productName" class="form-label text-start">Product Name</label>
+                                <input type="text" class="form-control" id="productName" name="nama_produk"
+                                    placeholder="Enter product name" required>
+                            </div>
+
+                            <!-- Product Price Field -->
+                            <div class="mb-3">
+                                <label for="productPrice" class="form-label text-start">Product Price</label>
+                                <input type="number" class="form-control" id="productPrice" name="harga_produk"
+                                    placeholder="Enter product price" required>
+                            </div>
+
+                            <!-- Product Description Field -->
+                            <div class="mb-3">
+                                <label for="productDescription" class="form-label text-start">Product
+                                    Description</label>
+                                <textarea class="form-control" id="productDescription" name="deskripsi_produk"
+                                    placeholder="Enter product description" required></textarea>
+                            </div>
+
+                            <!-- Product Photo Field -->
+                            <div class="mb-3">
+                                <label for="productPhoto" class="form-label text-start">Product Photo</label>
+                                <input type="file" class="form-control" id="productPhoto" name="foto_produk"
+                                    accept="image/*" required>
+                            </div>
+                        </section>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Add Product</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <footer class="footer text-center mt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-end">
+                    <h2 class="text-uppercase">Layanan Pelanggan</h2>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLScG36wO8QSAPcNZaAcPFG0gh9sjZsuaPKmIjKVLh4Kw3hpwuw/viewform?usp=sf_link"
+                                target="_blank">Email</a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://api.whatsapp.com/send?phone=6281384758254&text=Halo%20kami%20dari%20Toko%20Online">WhatsApp
+                                1</a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://api.whatsapp.com/send?phone=6285931527148&text=Halo%20kami%20dari%20Toko%20Online">WhatsApp
+                                2</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 text-end">
+                    <h2 class="text-uppercase">Pembayaran</h2>
+                    <li>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/1920px-Bank_Central_Asia.svg.png"
+                            alt="BCA Logo" class="img-fluid" style="width: 100px; height: auto;">
+                    </li>
+                    <li>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/1920px-PayPal.svg.png"
+                            alt="PayPal Logo" class="img-fluid" style="width: 100px; height: auto;">
+                    </li>
+                </div>
+                <hr>
+                <span class="footer1">Copyright &copy; student LearningX kelompok 6a</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
